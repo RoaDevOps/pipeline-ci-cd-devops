@@ -13,6 +13,11 @@ jobs:
       - name: Clonar el repositorio
         uses: actions/checkout@v3
 
+      - name: Instalar dependencias y ejecutar pruebas  # 🔹 Agregado aquí
+        run: |
+          pip install -r requirements.txt
+          pytest tests/
+
       - name: Iniciar sesión en Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 

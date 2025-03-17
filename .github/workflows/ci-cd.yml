@@ -20,4 +20,4 @@ jobs:
         run: docker build -t ro8a/mi-app-ci-cd:latest .
 
       - name: Subir la imagen a Docker Hub
-        run: docker push roa8a/mi-app-ci-cd:latest
+        run: docker push ro8a/mi-app-ci-cd:latest

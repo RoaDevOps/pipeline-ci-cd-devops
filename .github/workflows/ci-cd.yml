@@ -1,0 +1,23 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Se ejecuta cuando se hace push a la rama main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
+
+      - name: Iniciar sesión en Docker Hub
+        run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+      - name: Construir la imagen Docker
+        run: docker build -t tu-usuario/mi-app-ci-cd:latest .
+
+      - name: Subir la imagen a Docker Hub
+        run: docker push tu-usuario/mi-app-ci-cd:latest
